@@ -8,12 +8,14 @@ const Ideas = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All Categories");
 
+  const API_URL = import.meta.env.VITE_API_URL || "https://ideavault-server-nqa7.onrender.com";
+  
   useEffect(() => {
     document.title = "IdeaVault | Explore Ideas";
     const fetchIdeas = async () => {  
       try {
         const res = await axios.get(
-          `http://localhost:5000/ideas?search=${search}&category=${category}`
+          `${API_URL}/ideas?search=${search}&category=${category}`
         );
         setIdeas(res.data);
       } catch (err) {
